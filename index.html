@@ -10,27 +10,29 @@
 <style>
   :root{
     --bg:#f5f7f0; --ink:#131a10; --green:#1f7a43; --green-dk:#0b3d20;
-    --gold:#d79b3f; --card:#ffffff; --line:#e2e8db; --muted:#68765f;
+    --gold:#c69a4e; --card:#ffffff; --line:#e2e8db; --muted:#68765f;
     padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
   }
   *{box-sizing:border-box;}
+  html,body{width:100%; max-width:100%; overflow-x:hidden;}
   body{margin:0; background:var(--bg); color:var(--ink); font-family:'Inter',sans-serif;}
   h1,h2,.mn{font-family:'Manrope',sans-serif;}
 
-  main{max-width:1180px; margin:0 auto; padding:34px 24px 60px;}
-  .page-title h1{font-size:26px; margin:0 0 4px;}
-  .page-title p{color:var(--muted); font-size:13px; margin:0 0 26px;}
+  main{width:100%; margin:0 auto; padding:28px clamp(16px,4vw,48px) 50px;}
+  .page-title h1{font-size:clamp(20px,3vw,27px); margin:0 0 4px;}
+  .page-title p{color:var(--muted); font-size:13px; margin:0 0 24px;}
 
-  .stats{display:grid; grid-template-columns:repeat(4,1fr); gap:14px; margin-bottom:36px;}
-  @media(max-width:720px){.stats{grid-template-columns:repeat(2,1fr);}}
-  .stat{background:var(--card); border:1px solid var(--line); border-radius:12px; padding:18px;}
-  .stat .num{font-family:'Manrope',sans-serif; font-size:28px; font-weight:800; color:var(--green-dk); font-variant-numeric:tabular-nums;}
+  .stats{display:grid; grid-template-columns:repeat(4,1fr); gap:14px; margin-bottom:32px;}
+  @media(max-width:900px){.stats{grid-template-columns:repeat(2,1fr);}}
+  @media(max-width:460px){.stats{grid-template-columns:1fr 1fr;}}
+  .stat{background:var(--card); border:1px solid var(--line); border-radius:12px; padding:16px 18px;}
+  .stat .num{font-family:'Manrope',sans-serif; font-size:clamp(22px,2.4vw,28px); font-weight:800; color:var(--green-dk); font-variant-numeric:tabular-nums;}
   .stat .lbl{font-size:11.5px; color:var(--muted); margin-top:2px;}
 
-  .cat{background:var(--card); border:1px solid var(--line); border-radius:14px; padding:22px 24px; margin-bottom:16px;}
-  .cat-head{display:flex; align-items:center; justify-content:space-between; margin-bottom:4px;}
+  .cat{background:var(--card); border:1px solid var(--line); border-radius:14px; padding:22px clamp(16px,2.5vw,28px); margin-bottom:16px;}
+  .cat-head{display:flex; align-items:center; justify-content:space-between; margin-bottom:4px; flex-wrap:wrap; gap:8px;}
   .cat-head h2{font-size:16px; margin:0; display:flex; align-items:center; gap:8px;}
-  .cat-tag{font-size:10.5px; font-weight:700; color:var(--green); background:#e8f3ea; padding:3px 9px; border-radius:999px;}
+  .cat-tag{font-size:10.5px; font-weight:700; color:var(--green); background:#e8f3ea; padding:3px 9px; border-radius:999px; white-space:nowrap;}
   .cat-desc{font-size:12px; color:var(--muted); margin:2px 0 16px;}
 
   .grp{margin-bottom:14px;}
@@ -43,13 +45,15 @@
   .chip:hover{background:var(--green); color:#fff; border-color:var(--green);}
 
   .steps{display:flex; gap:16px; flex-wrap:wrap;}
-  .step{flex:1; min-width:180px;}
-  .step .n{font-family:'Manrope',sans-serif; font-weight:800; font-size:22px; color:var(--gold);}
+  .step{flex:1 1 180px; min-width:160px;}
+  .step .n{font-family:'Manrope',sans-serif; font-weight:800; font-size:22px; color:var(--green);}
   .step h3{font-size:13px; margin:6px 0 4px;}
   .step p{font-size:11.5px; color:var(--muted); margin:0;}
   .contact{display:flex; gap:18px; flex-wrap:wrap; font-size:12.5px; margin-top:16px;}
+  .contact a{color:var(--green-dk); text-decoration:none; font-weight:600;}
+  .contact a:hover{text-decoration:underline;}
 
-  .note{font-size:12.5px; color:var(--muted); background:#fbf7ee; border:1px dashed var(--gold); border-radius:10px; padding:14px 16px;}
+  .note{font-size:12.5px; color:var(--muted); background:var(--card); border-left:3px solid var(--green); border-radius:8px; padding:14px 16px; line-height:1.6;}
 </style>
 </head>
 <body>
@@ -126,7 +130,9 @@
       <div class="step"><div class="n">03</div><h3>Jawaban / keberatan</h3><p>Jika ditolak, dapat diajukan keberatan.</p></div>
     </div>
     <div class="contact">
-      <span>📧 bagianperencanaan@adm.unand.ac.id</span><span>📞 081212343595</span><span>🕘 Senin–Jumat, 08.00–16.00</span>
+      <span>📧 <a href="mailto:bagianperencanaan@adm.unand.ac.id">bagianperencanaan@adm.unand.ac.id</a></span>
+      <span>📞 081212343595</span>
+      <span>🕘 Senin–Jumat, 08.00–16.00</span>
     </div>
   </div>
 
@@ -140,13 +146,12 @@
 function initDashboard(){
   document.querySelectorAll('.chips').forEach(function(box){
     var chips = Array.from(box.children).filter(function(el){return el.classList.contains('chip');});
-    // sort newest-first by the highest year mentioned in each chip's text
     chips.forEach(function(c){
       var nums = (c.textContent.match(/20\d{2}/g) || []).map(Number);
       c.dataset.sortYear = nums.length ? Math.max.apply(null, nums) : 0;
     });
     chips.sort(function(a,b){ return b.dataset.sortYear - a.dataset.sortYear; });
-    chips.forEach(function(c){ box.appendChild(c); }); // reorder: newest first
+    chips.forEach(function(c){ box.appendChild(c); });
 
     if(chips.length > 6){
       chips.slice(6).forEach(function(c){ c.style.display='none'; });
@@ -184,16 +189,12 @@ function initDashboard(){
 }
 document.addEventListener('DOMContentLoaded', initDashboard);
 
-// Auto-resize: kirim tinggi halaman ke parent (iframe di Joomla), sama pola
-// seperti halaman Struktur Organisasi & dashboard IKU.
 function sendHeight(){
   var h = document.documentElement.scrollHeight;
   window.parent.postMessage({ ppidFrameHeight: h }, '*');
 }
 window.addEventListener('load', sendHeight);
 window.addEventListener('resize', sendHeight);
-// kirim ulang beberapa kali di awal untuk menangkap perubahan tinggi
-// akibat font/gambar yang telat dimuat atau proses auto-fold/auto-hitung di atas
 setTimeout(sendHeight, 300);
 setTimeout(sendHeight, 1000);
 </script>
