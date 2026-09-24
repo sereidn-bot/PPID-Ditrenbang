@@ -207,6 +207,19 @@ function initDashboard(){
   if(nums[2]) nums[2].textContent = catCount;
 }
 document.addEventListener('DOMContentLoaded', initDashboard);
+
+// Auto-resize: kirim tinggi halaman ke parent (iframe di Joomla), sama pola
+// seperti halaman Struktur Organisasi & dashboard IKU.
+function sendHeight(){
+  var h = document.documentElement.scrollHeight;
+  window.parent.postMessage({ ppidFrameHeight: h }, '*');
+}
+window.addEventListener('load', sendHeight);
+window.addEventListener('resize', sendHeight);
+// kirim ulang beberapa kali di awal untuk menangkap perubahan tinggi
+// akibat font/gambar yang telat dimuat atau proses auto-fold/auto-hitung di atas
+setTimeout(sendHeight, 300);
+setTimeout(sendHeight, 1000);
 </script>
 </body>
 </html>
