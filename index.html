@@ -49,7 +49,11 @@
   .step .n{font-family:'Manrope',sans-serif; font-weight:800; font-size:22px; color:var(--green);}
   .step h3{font-size:13px; margin:6px 0 4px;}
   .step p{font-size:11.5px; color:var(--muted); margin:0;}
-  .contact{display:flex; gap:18px; flex-wrap:wrap; font-size:12.5px; margin-top:16px;}
+  .contact{display:flex; gap:12px 28px; flex-wrap:wrap; align-items:center; font-size:12.5px; line-height:1.4; margin-top:20px; padding-top:16px; border-top:1px solid #d5e3cd;}
+  .cat-head + .steps{margin-top:16px;}
+  .steps{gap:20px 16px;}
+  .contact span{display:inline-flex; align-items:center; gap:8px; margin:0; padding:0; line-height:1.4;}
+  .contact svg{width:16px; height:16px; flex:0 0 16px; stroke:var(--green); fill:none; stroke-width:2; stroke-linecap:round; stroke-linejoin:round;}
   .contact a{color:var(--green-dk); text-decoration:none; font-weight:600;}
   .contact a:hover{text-decoration:underline;}
 
@@ -131,9 +135,9 @@
       <div class="step"><div class="n">03</div><h3>Jawaban / keberatan</h3><p>Jika ditolak, dapat diajukan keberatan.</p></div>
     </div>
     <div class="contact">
-      <span>📧 <a href="mailto:bagianperencanaan@adm.unand.ac.id">bagianperencanaan@adm.unand.ac.id</a></span>
-      <span>📞 081212343595</span>
-      <span>🕘 Senin–Jumat, 08.00–16.00</span>
+      <span><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg><a href="mailto:bagianperencanaan@adm.unand.ac.id">bagianperencanaan@adm.unand.ac.id</a></span>
+      <span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg>081212343595</span>
+      <span><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Senin–Jumat, 08.00–16.00</span>
     </div>
   </div>
 
