@@ -44,6 +44,15 @@
   }
   .chip:hover{background:var(--green); color:#fff; border-color:var(--green);}
 
+  .dd{position:relative;}
+  .dd summary{list-style:none; cursor:pointer; display:block; user-select:none;}
+  .dd summary::-webkit-details-marker{display:none;}
+  .dd summary::after{content:" ▾"; font-size:9px;}
+  .dd-menu{position:absolute; top:calc(100% + 4px); left:0; z-index:5; min-width:100%;
+    background:#fff; border:1px solid #d5e3cd; border-radius:8px; padding:4px;
+    box-shadow:0 4px 12px rgba(0,0,0,.12); display:flex; flex-direction:column; gap:4px;}
+  .dd-menu .chip{white-space:nowrap; text-align:center; border:0;}
+
   .steps{display:flex; gap:16px; flex-wrap:wrap;}
   .step{flex:1 1 180px; min-width:160px;}
   .step .n{font-family:'Manrope',sans-serif; font-weight:800; font-size:22px; color:var(--green);}
@@ -99,7 +108,13 @@
       <a class="chip" href="https://drive.google.com/file/d/13JWWJpxPANNIavCScV_cHw2X0_UYMQ20/view?usp=drive_link" target="_blank" rel="noopener noreferrer">2023</a>
       <a class="chip" href="https://drive.google.com/file/d/1zynGXG9MjdIdqTbkx9s6i8c3GpC7NVoW/view?usp=drive_link" target="_blank" rel="noopener noreferrer">2024</a>
       <a class="chip" href="https://drive.google.com/file/d/1_weaXlXs-g3j5Q9MwTMOqpmRWFk1HRqW/view?usp=drive_link" target="_blank" rel="noopener noreferrer">2025</a>
-      <a class="chip" href="https://drive.google.com/file/d/1ZCqnzBpxsRf-_ZR78aG9zyELxZ14-EQx/view?usp=drive_link" target="_blank" rel="noopener noreferrer">2026</a>
+      <details class="dd">
+        <summary class="chip">2026</summary>
+        <div class="dd-menu">
+          <a class="chip" href="https://drive.google.com/LINK_TW_II" target="_blank" rel="noopener noreferrer">TW II</a>
+          <a class="chip" href="https://drive.google.com/file/d/1ZCqnzBpxsRf-_ZR78aG9zyELxZ14-EQx/view?usp=drive_link" target="_blank" rel="noopener noreferrer">TW I</a>
+        </div>
+      </details>
     </div></div>
 
     <div class="grp"><div class="grp-lbl">SAKIP</div><div class="chips">
@@ -193,6 +208,11 @@ function initDashboard(){
   if(nums[2]) nums[2].textContent = catCount;
 }
 document.addEventListener('DOMContentLoaded', initDashboard);
+document.addEventListener('click', function(e){
+  document.querySelectorAll('.dd[open]').forEach(function(d){
+    if(!d.contains(e.target)) d.removeAttribute('open');
+  });
+});
 
 function sendHeight(){
   var h = document.documentElement.scrollHeight;
