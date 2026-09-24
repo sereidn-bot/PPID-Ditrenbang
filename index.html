@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>PPID — Panel Transparansi</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#f5f7f0; --ink:#131a10; --green:#1f7a43; --green-dk:#0b3d20;
+    --gold:#d79b3f; --card:#ffffff; --line:#e2e8db; --muted:#68765f;
+    padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+  }
+  *{box-sizing:border-box;}
+  body{margin:0; background:var(--bg); color:var(--ink); font-family:'Inter',sans-serif;}
+  h1,h2,.mn{font-family:'Manrope',sans-serif;}
+
+  header{background:var(--green-dk); padding:14px 28px;}
+  .nav-wrap{display:flex; align-items:center; justify-content:space-between; max-width:1180px; margin:0 auto; flex-wrap:wrap; gap:10px;}
+  .brand{display:flex; align-items:center; gap:10px;}
+  .brand-icon{width:34px;height:34px;border-radius:6px;background:#ffffff1a;display:flex;align-items:center;justify-content:center;font-size:16px;}
+  .brand-text .k{color:var(--gold); font-size:10px; font-weight:700;}
+  .brand-text .t{color:#fff; font-size:12.5px; font-weight:700;}
+  nav{display:flex; gap:18px; flex-wrap:wrap;}
+  nav a{color:#dce8d6; text-decoration:none; font-size:12.5px; font-weight:600;}
+  nav a.active{color:#fff; border-bottom:2px solid var(--gold); padding-bottom:4px;}
+
+  main{max-width:1180px; margin:0 auto; padding:34px 24px 60px;}
+  .page-title h1{font-size:26px; margin:0 0 4px;}
+  .page-title p{color:var(--muted); font-size:13px; margin:0 0 26px;}
+
+  .stats{display:grid; grid-template-columns:repeat(4,1fr); gap:14px; margin-bottom:36px;}
+  @media(max-width:720px){.stats{grid-template-columns:repeat(2,1fr);}}
+  .stat{background:var(--card); border:1px solid var(--line); border-radius:12px; padding:18px;}
+  .stat .num{font-family:'Manrope',sans-serif; font-size:28px; font-weight:800; color:var(--green-dk); font-variant-numeric:tabular-nums;}
+  .stat .lbl{font-size:11.5px; color:var(--muted); margin-top:2px;}
+
+  .cat{background:var(--card); border:1px solid var(--line); border-radius:14px; padding:22px 24px; margin-bottom:16px;}
+  .cat-head{display:flex; align-items:center; justify-content:space-between; margin-bottom:4px;}
+  .cat-head h2{font-size:16px; margin:0; display:flex; align-items:center; gap:8px;}
+  .cat-tag{font-size:10.5px; font-weight:700; color:var(--green); background:#e8f3ea; padding:3px 9px; border-radius:999px;}
+  .cat-desc{font-size:12px; color:var(--muted); margin:2px 0 16px;}
+
+  .grp{margin-bottom:14px;}
+  .grp-lbl{font-size:12px; font-weight:600; margin-bottom:8px;}
+  .chips{display:flex; flex-wrap:wrap; gap:7px;}
+  .chip{
+    background:#f0f4ec; border:1px solid var(--line); color:var(--green-dk);
+    font-size:12px; font-weight:600; padding:6px 13px; border-radius:8px; text-decoration:none;
+  }
+  .chip:hover{background:var(--green); color:#fff; border-color:var(--green);}
+
+  .steps{display:flex; gap:16px; flex-wrap:wrap;}
+  .step{flex:1; min-width:180px;}
+  .step .n{font-family:'Manrope',sans-serif; font-weight:800; font-size:22px; color:var(--gold);}
+  .step h3{font-size:13px; margin:6px 0 4px;}
+  .step p{font-size:11.5px; color:var(--muted); margin:0;}
+  .contact{display:flex; gap:18px; flex-wrap:wrap; font-size:12.5px; margin-top:16px;}
+
+  .note{font-size:12.5px; color:var(--muted); background:#fbf7ee; border:1px dashed var(--gold); border-radius:10px; padding:14px 16px;}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav-wrap">
+    <div class="brand">
+      <div class="brand-icon">🌳</div>
+      <div class="brand-text"><div class="k">DIREKTORAT</div><div class="t">PERENCANAAN &amp; PENGEMBANGAN</div></div>
+    </div>
+    <nav>
+      <a href="#">Beranda</a><a href="#">Struktur Organisasi</a><a href="#">Berita</a>
+      <a href="#">Capaian Kinerja</a><a href="#">Gallery</a><a href="#">Download</a>
+      <a href="#" class="active">PPID</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <div class="page-title">
+    <h1>Panel Transparansi PPID</h1>
+    <p>Ditrenbang UNAND — sesuai UU No. 14/2008 tentang Keterbukaan Informasi Publik</p>
+  </div>
+
+  <div class="stats">
+    <div class="stat"><div class="num">24</div><div class="lbl">Dokumen tersedia</div></div>
+    <div class="stat"><div class="num">6</div><div class="lbl">Tahun cakupan data</div></div>
+    <div class="stat"><div class="num">4</div><div class="lbl">Kategori informasi</div></div>
+    <div class="stat"><div class="num">10</div><div class="lbl">Hari kerja proses permohonan</div></div>
+  </div>
+
+  <div class="cat">
+    <div class="cat-head"><h2>Informasi Berkala</h2><span class="cat-tag">Pasal 9</span></div>
+    <p class="cat-desc">Wajib diumumkan rutin tanpa diminta.</p>
+
+    <div class="grp"><div class="grp-lbl">Renstra</div><div class="chips">
+      <a class="chip" href="https://drive.google.com/file/d/1ISJYZI2ZyMpl4LzJB-gTYdGsGgr-rKiF/view?usp=drive_link">2020–2024</a>
+      <a class="chip" href="https://drive.google.com/file/d/1Yq6AFY4xcTzONJI_XBTVyFb3cB4XPWaD/view?usp=drive_link">2025–2029</a>
+    </div></div>
+
+    <div class="grp"><div class="grp-lbl">Laporan Kinerja</div><div class="chips">
+      <a class="chip" href="https://drive.google.com/file/d/1Ds_rbkPZDCB-h66gYhfAvjKLV1f5L3H_/view?usp=drive_link">2021</a>
+      <a class="chip" href="https://drive.google.com/file/d/1JXnHAup9WzfHtK1XhSm0TNaEk2-bWNIt/view?usp=drive_link">2022</a>
+      <a class="chip" href="https://drive.google.com/file/d/11Koo5bQ5dJffdqHZgSOzom0g8PnUJsRK/view?usp=drive_link">2023</a>
+      <a class="chip" href="https://drive.google.com/file/d/1hSSRyWFOvNiMWv59DB9meoc5qDD28uZh/view?usp=drive_link">2024</a>
+      <a class="chip" href="https://drive.google.com/file/d/1MUWnGn1HFLEG8GozIpJkQitt5INkk256/view?usp=drive_link">2025</a>
+    </div></div>
+
+    <div class="grp"><div class="grp-lbl">Perjanjian &amp; Capaian Kinerja</div><div class="chips">
+      <a class="chip" href="https://drive.google.com/file/d/1Tah6TZe2WkBJIzzPGOhZgnhhPD3EzTts/view?usp=drive_link">2021</a>
+      <a class="chip" href="https://drive.google.com/file/d/1MZCSwhIMFxCBvLiHDTuILp08kCTbgj0C/view?usp=drive_link">2022</a>
+      <a class="chip" href="https://drive.google.com/file/d/13JWWJpxPANNIavCScV_cHw2X0_UYMQ20/view?usp=drive_link">2023</a>
+      <a class="chip" href="https://drive.google.com/file/d/1zynGXG9MjdIdqTbkx9s6i8c3GpC7NVoW/view?usp=drive_link">2024</a>
+      <a class="chip" href="https://drive.google.com/file/d/1_weaXlXs-g3j5Q9MwTMOqpmRWFk1HRqW/view?usp=drive_link">2025</a>
+      <a class="chip" href="https://drive.google.com/file/d/1ZCqnzBpxsRf-_ZR78aG9zyELxZ14-EQx/view?usp=drive_link">2026</a>
+    </div></div>
+
+    <div class="grp"><div class="grp-lbl">SAKIP</div><div class="chips">
+      <a class="chip" href="https://drive.google.com/file/d/18ETxVtDzZREK4hNVYocIfL_Lmm4vue_3/view?usp=drive_link">2021</a>
+      <a class="chip" href="https://drive.google.com/file/d/1b1Qt-zbcI5339M6TPCX8ijGohjCbRIm9/view?usp=drive_link">2022</a>
+      <a class="chip" href="https://drive.google.com/file/d/1UU2zLch-0hguK5QDTltms0EofRmGT-rW/view?usp=drive_link">2023</a>
+      <a class="chip" href="https://drive.google.com/file/d/19UBGYJb5bOiU7XojSt_27xnoWSHQalAb/view?usp=drive_link">2024</a>
+      <a class="chip" href="https://drive.google.com/file/d/1oLMmtQav9oUaVoGHaH4fVlVf8FaAv5Rs/view?usp=drive_link">2025</a>
+      <a class="chip" href="https://drive.google.com/file/d/1aNVflUukg1F04VdLbeVBfCGaLZQEW6Dq/view?usp=drive_link">2026</a>
+    </div></div>
+  </div>
+
+  <div class="cat">
+    <div class="cat-head"><h2>Informasi Setiap Saat</h2><span class="cat-tag">Pasal 11</span></div>
+    <p class="cat-desc">Tersedia sewaktu-waktu bagi publik.</p>
+    <div class="chips" style="margin-bottom:14px;">
+      <a class="chip" href="#">Profil &amp; Tupoksi</a>
+      <a class="chip" href="#">Struktur Organisasi</a>
+      <a class="chip" href="#">Daftar Informasi Publik</a>
+    </div>
+    <div class="grp"><div class="grp-lbl">Dasar Hukum &amp; Regulasi</div><div class="chips">
+      <a class="chip" href="https://drive.google.com/file/d/10ymcSa18siFPJaVevOHQq3kAGtZ_hbz3/view?usp=drive_link">Aturan RKAT 2026</a>
+      <a class="chip" href="https://drive.google.com/file/d/1mkucdLJkV0hAFNZ-UJ4Shl2bmqE_mdHO/view?usp=drive_link">Panduan RAKER 2025</a>
+      <a class="chip" href="https://drive.google.com/file/d/1Sh8lxAOMPDfJZ4_7wBPUKaYej5JBnCXr/view?usp=drive_link">Renstra Kemdiktisaintek</a>
+    </div></div>
+  </div>
+
+  <div class="cat">
+    <div class="cat-head"><h2>Prosedur Permohonan</h2><span class="cat-tag">Pasal 22</span></div>
+    <div class="steps">
+      <div class="step"><div class="n">01</div><h3>Ajukan permohonan</h3><p>Via email/kontak resmi.</p></div>
+      <div class="step"><div class="n">02</div><h3>Diproses</h3><p>Maks. 10 hari kerja.</p></div>
+      <div class="step"><div class="n">03</div><h3>Jawaban / keberatan</h3><p>Jika ditolak, dapat diajukan keberatan.</p></div>
+    </div>
+    <div class="contact">
+      <span>📧 ppid.ditrenbang@unand.ac.id</span><span>📞 081212343595</span><span>🕘 Senin–Jumat, 08.00–16.00</span>
+    </div>
+  </div>
+
+  <div class="cat">
+    <div class="cat-head"><h2>Informasi Dikecualikan</h2><span class="cat-tag">Pasal 17</span></div>
+    <div class="note">Termasuk data pribadi pegawai, dokumen internal yang masih dalam proses, dan informasi lain yang dikecualikan berdasarkan Undang-Undang Keterbukaan Informasi Publik.</div>
+  </div>
+</main>
+
+<script>
+function initDashboard(){
+  document.querySelectorAll('.chips').forEach(function(box){
+    var chips = Array.from(box.children).filter(function(el){return el.classList.contains('chip');});
+    // sort newest-first by the highest year mentioned in each chip's text
+    chips.forEach(function(c){
+      var nums = (c.textContent.match(/20\d{2}/g) || []).map(Number);
+      c.dataset.sortYear = nums.length ? Math.max.apply(null, nums) : 0;
+    });
+    chips.sort(function(a,b){ return b.dataset.sortYear - a.dataset.sortYear; });
+    chips.forEach(function(c){ box.appendChild(c); }); // reorder: newest first
+
+    if(chips.length > 6){
+      chips.slice(6).forEach(function(c){ c.style.display='none'; });
+      var more = document.createElement('button');
+      more.type = 'button';
+      more.textContent = '+' + (chips.length - 6) + ' tahun lebih lama';
+      more.className = 'chip';
+      more.style.cursor = 'pointer';
+      more.style.background = 'transparent';
+      more.style.borderStyle = 'dashed';
+      more.onclick = function(){
+        chips.slice(6).forEach(function(c){ c.style.display='inline-block'; });
+        more.remove();
+      };
+      box.appendChild(more);
+    }
+  });
+
+  var totalDocs = document.querySelectorAll('.chip[href^="http"]').length;
+
+  var years = new Set();
+  document.querySelectorAll('.chip, .grp-lbl').forEach(function(el){
+    var matches = el.textContent.match(/20\d{2}/g);
+    if(matches) matches.forEach(function(y){ years.add(y); });
+  });
+  var yearArr = Array.from(years).map(Number).sort(function(a,b){return a-b;});
+  var yearSpan = yearArr.length ? (yearArr[yearArr.length-1] - yearArr[0] + 1) : 0;
+
+  var catCount = document.querySelectorAll('.cat').length;
+
+  var nums = document.querySelectorAll('.stat .num');
+  if(nums[0]) nums[0].textContent = totalDocs;
+  if(nums[1]) nums[1].textContent = yearSpan;
+  if(nums[2]) nums[2].textContent = catCount;
+}
+document.addEventListener('DOMContentLoaded', initDashboard);
+</script>
+</body>
+</html>
