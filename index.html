@@ -356,10 +356,32 @@ document.addEventListener('click', function(e){
 });
 
 /* Menu navigasi */
+/* Desktop (ada mouse): submenu terbuka saat kursor di atas menu. Layar sentuh/HP: tetap klik. */
+var hoverMQ = window.matchMedia('(hover:hover) and (pointer:fine)');
+function hoverMode(){ return hoverMQ.matches && window.innerWidth > 700; }
+document.querySelectorAll('.nav-item').forEach(function(item){
+  var btn = item.querySelector('.nav-btn.has-sub'); if(!btn) return;
+  var timer;
+  item.addEventListener('mouseenter', function(){
+    if(!hoverMode()) return;
+    clearTimeout(timer);
+    if(item.classList.contains('open')) return;
+    closeMenus();
+    item.classList.add('open'); btn.setAttribute('aria-expanded','true');
+    setTimeout(sendHeight, 30);
+  });
+  item.addEventListener('mouseleave', function(){
+    if(!hoverMode()) return;
+    timer = setTimeout(function(){
+      item.classList.remove('open'); btn.setAttribute('aria-expanded','false');
+      sendHeight();
+    }, 150);
+  });
+});
 document.querySelectorAll('.nav-btn.has-sub').forEach(function(btn){
   btn.addEventListener('click', function(e){
     e.stopPropagation();
-    var item = btn.parentElement, willOpen = !item.classList.contains('open');
+    var item = btn.parentElement, willOpen = !item.classList.contains('open') || hoverMode();
     closeMenus();
     if(willOpen){ item.classList.add('open'); btn.setAttribute('aria-expanded','true'); }
   });
