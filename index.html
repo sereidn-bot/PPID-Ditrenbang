@@ -109,6 +109,23 @@
   #fStatus{font-size:13px; margin:0 0 12px; padding:10px 14px; border-radius:8px; display:none;}
   #fStatus.ok{display:block; background:#e3f3e8; color:#0b3d20;}
   #fStatus.err{display:block; background:#fdeaea; color:#8a1f1f;}
+  /* ===== Animasi hover: kartu statistik & langkah prosedur ===== */
+  .stat{position:relative; overflow:hidden; transition:transform .25s ease, box-shadow .25s ease, background-color .25s ease;}
+  .stat .num{display:inline-block; transform-origin:left center; transition:transform .25s ease, color .25s ease;}
+  .stat::after{content:""; position:absolute; left:0; bottom:0; height:3px; width:0; background:var(--gold); transition:width .35s ease;}
+  .step{padding:10px 12px; margin:-10px -12px; border-radius:10px; transition:transform .25s ease, background-color .25s ease, box-shadow .25s ease;}
+  .step .n{display:inline-block; transform-origin:left center; transition:transform .25s ease, color .25s ease;}
+  @media (hover:hover){
+    .stat:hover{transform:translateY(-6px); background:#0f4a27; box-shadow:0 12px 24px rgba(11,61,32,.28);}
+    .stat:hover .num{transform:scale(1.12); color:var(--gold);}
+    .stat:hover::after{width:100%;}
+    .step:hover{transform:translateY(-4px); background:#fff; box-shadow:0 8px 18px rgba(11,61,32,.12);}
+    .step:hover .n{transform:translateX(4px) scale(1.15); color:var(--gold);}
+  }
+  @media (prefers-reduced-motion:reduce){
+    .stat,.stat .num,.stat::after,.step,.step .n{transition:none;}
+    .stat:hover,.stat:hover .num,.step:hover,.step:hover .n{transform:none;}
+  }
   .view{display:none;}
   .view.on{display:block;}
   body.in-view .home{display:none;}
