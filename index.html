@@ -67,25 +67,133 @@
   .contact a:hover{text-decoration:underline;}
 
   .note{font-size:12.5px; color:var(--muted); background:#ffffff; border-left:3px solid var(--green); border-radius:8px; padding:14px 16px; line-height:1.6;}
+
+  /* ===== Menu navigasi ===== */
+  .topnav{position:relative; z-index:30; background:#fff; border-bottom:1px solid var(--line); padding:0 clamp(16px,4vw,48px);}
+  .nav{display:flex; flex-wrap:wrap; align-items:center; gap:0 6px;}
+  .nav-item{position:relative;}
+  .nav-btn{background:none; border:0; font:600 13.5px 'Inter',sans-serif; color:var(--ink); padding:16px 14px; cursor:pointer; display:flex; align-items:center; gap:5px; text-decoration:none;}
+  .nav-btn.has-sub::after{content:"▾"; font-size:9px;}
+  .nav-btn:hover,.nav-item.open>.nav-btn,.nav-btn.active{color:var(--green);}
+  .sub{display:none; position:absolute; top:100%; left:0; z-index:40; background:#fff; border:1px solid var(--line); border-radius:8px; box-shadow:0 6px 18px rgba(0,0,0,.12); padding:10px; min-width:250px;}
+  .sub.two{grid-template-columns:1fr 1fr; min-width:540px;}
+  .nav-item.open>.sub{display:grid;}
+  .nav-item:nth-last-child(-n+2) .sub{left:auto; right:0;}
+  .sub a{padding:10px 14px; font-size:13px; color:var(--ink); text-decoration:none; border-radius:6px; white-space:nowrap;}
+  .sub a:hover{background:#eef5ea; color:var(--green-dk);}
+  @media(max-width:700px){
+    .nav-item{position:static;}
+    .sub,.sub.two{position:static; box-shadow:none; border:0; border-left:2px solid var(--green); border-radius:0; min-width:0; width:100%; grid-template-columns:1fr; padding:4px 0 4px 8px;}
+    .nav-item.open>.sub{display:grid;}
+    .nav-item{width:100%;}
+    .nav-btn{width:100%; justify-content:space-between; padding:12px 4px;}
+    .sub a{white-space:normal;}
+  }
+  .fs{border:1px dashed #c4d6ba; border-radius:10px; padding:14px 16px 16px; margin:0 0 14px; background:#fff;}
+  .fs legend{font:700 13px 'Manrope',sans-serif; color:var(--green-dk); padding:0 6px;}
+  .fgrid{display:grid; grid-template-columns:1fr 1fr; gap:12px 14px;}
+  @media(max-width:700px){.fgrid{grid-template-columns:1fr;}}
+  .fld label{display:block; font-size:12px; font-weight:600; margin-bottom:5px;}
+  .fld label b{color:#c0392b;}
+  .fld input,.fld select,.fld textarea{width:100%; font:13px 'Inter',sans-serif; padding:10px 12px; border:1px solid #cdd8c5; border-radius:8px; background:#fff; color:var(--ink);}
+  .fld textarea{min-height:90px; resize:vertical;}
+  .fld input:focus,.fld select:focus,.fld textarea:focus{outline:2px solid var(--green); outline-offset:0; border-color:var(--green);}
+  .fld small{display:block; font-size:11px; color:var(--muted); margin-top:4px;}
+  .full{grid-column:1/-1;}
+  .hp{position:absolute; left:-9999px; width:1px; height:1px; overflow:hidden;}
+  .fbtns{display:flex; gap:10px; justify-content:flex-end; flex-wrap:wrap;}
+  .btn{font:700 13px 'Inter',sans-serif; padding:11px 20px; border-radius:8px; border:0; cursor:pointer;}
+  .btn.pri{background:var(--green-dk); color:#fff;}
+  .btn.sec{background:#fff; color:var(--green-dk); border:1px solid #cdd8c5;}
+  .btn:disabled{opacity:.6; cursor:wait;}
+  #fStatus{font-size:13px; margin:0 0 12px; padding:10px 14px; border-radius:8px; display:none;}
+  #fStatus.ok{display:block; background:#e3f3e8; color:#0b3d20;}
+  #fStatus.err{display:block; background:#fdeaea; color:#8a1f1f;}
+  .view{display:none;}
+  .view.on{display:block;}
+  body.in-view .home{display:none;}
+  main{min-height:480px;}
 </style>
 </head>
 <body>
 
+<header class="topnav">
+  <nav class="nav" aria-label="Menu utama PPID">
+    <div class="nav-item"><a class="nav-btn active" href="#beranda">Beranda</a></div>
+
+    <div class="nav-item">
+      <button class="nav-btn has-sub" type="button" aria-expanded="false">Profil</button>
+      <div class="sub two">
+        <a href="#">Sejarah PPID</a>
+        <a href="#">Maklumat Pelayanan</a>
+        <a href="https://ditrenbang.unand.ac.id/index.php/struktur-organisasi-new" target="_blank" rel="noopener">Profil dan Struktur Organisasi</a>
+        <a href="#">Komitmen PPID</a>
+        <a href="#">Visi dan Misi</a>
+        <a href="#">SOP Layanan Informasi Publik</a>
+        <a href="https://drive.google.com/file/d/1HTXqghQwiMyLj-vz8yU6yiyPQXlBonRO/view?usp=drive_link" target="_blank" rel="noopener noreferrer">Tugas dan Fungsi</a>
+        <a href="#">Kelembagaan</a>
+        <a href="#">Profil Pimpinan</a>
+      </div>
+    </div>
+
+    <div class="nav-item">
+      <button class="nav-btn has-sub" type="button" aria-expanded="false">Layanan Informasi</button>
+      <div class="sub two">
+        <a href="#formulir" data-jenis="Permohonan Informasi">Formulir Permohonan Informasi</a>
+        <a href="#">Survei Kepuasan Masyarakat (SKM)</a>
+        <a href="#formulir" data-jenis="Pengajuan Keberatan">Formulir Pengajuan Keberatan</a>
+        <a href="#">Dokumen Jawaban PPID</a>
+        <a href="#prosedur">Tata Cara Permohonan Informasi</a>
+        <a href="#">Sarana dan Prasarana</a>
+        <a href="#">Tata Cara Pengajuan Keberatan</a>
+        <a href="#">Surat Pernyataan</a>
+        <a href="#">Tata Cara Penyelesaian Sengketa Informasi</a>
+        <a href="#">Layanan Berbasis Aplikasi</a>
+        <span></span>
+        <a href="#">FAQs</a>
+      </div>
+    </div>
+
+    <div class="nav-item">
+      <button class="nav-btn has-sub" type="button" aria-expanded="false">Informasi Publik</button>
+      <div class="sub">
+        <a href="#setiap-saat">Informasi Wajib Tersedia Setiap Saat</a>
+        <a href="#">Informasi Serta Merta</a>
+        <a href="#berkala">Informasi Yang Wajib Disediakan Berkala</a>
+        <a href="#dikecualikan">Informasi Dikecualikan</a>
+        <a href="#">Daftar Informasi Online</a>
+      </div>
+    </div>
+
+    <div class="nav-item">
+      <button class="nav-btn has-sub" type="button" aria-expanded="false">Peraturan</button>
+      <div class="sub">
+        <a href="#">Peraturan Rektor</a>
+        <a href="#">Peraturan Majelis Wali Amanat (MWA)</a>
+        <a href="#">Peraturan Senat Akademik Universitas (SAU)</a>
+        <a href="#regulasi">Regulasi</a>
+        <a href="#">Surat Edaran</a>
+        <a href="#">Keputusan Rektor</a>
+      </div>
+    </div>
+  </nav>
+</header>
+
 <main>
-  <div class="page-title">
+  <div class="page-title home" id="beranda">
     <h1>Panel Transparansi PPID</h1>
     <p>Ditrenbang UNAND — sesuai UU No. 14/2008 tentang Keterbukaan Informasi Publik</p>
     <p style="font-size:12px;color:#9aaa9a;font-style:italic;margin-top:4px;">Diperbarui per September 2026</p>
   </div>
 
-  <div class="stats">
+  <div class="stats home">
     <div class="stat"><div class="num">24</div><div class="lbl">Dokumen tersedia</div></div>
     <div class="stat"><div class="num">6</div><div class="lbl">Tahun cakupan data</div></div>
     <div class="stat"><div class="num">4</div><div class="lbl">Kategori informasi</div></div>
     <div class="stat"><div class="num">10</div><div class="lbl">Hari kerja proses permohonan</div></div>
   </div>
 
-  <div class="cat">
+  <div class="cat view" id="berkala">
     <div class="cat-head"><h2>Informasi Berkala</h2><span class="cat-tag">Pasal 9</span></div>
     <p class="cat-desc">Wajib diumumkan rutin tanpa diminta.</p>
 
@@ -127,22 +235,53 @@
     </div></div>
   </div>
 
-  <div class="cat">
+  <div class="cat view" id="setiap-saat">
     <div class="cat-head"><h2>Informasi Setiap Saat</h2><span class="cat-tag">Pasal 11</span></div>
     <p class="cat-desc">Tersedia sewaktu-waktu bagi publik.</p>
     <div class="chips" style="margin-bottom:14px;">
       <a class="chip" href="https://drive.google.com/file/d/1HTXqghQwiMyLj-vz8yU6yiyPQXlBonRO/view?usp=drive_link" target="_blank" rel="noopener noreferrer">Profil &amp; Tupoksi</a>
       <a class="chip" href="https://ditrenbang.unand.ac.id/index.php/struktur-organisasi-new" target="_blank" rel="noopener">Struktur Organisasi</a>
-      <a class="chip" href="#">Daftar Informasi Publik</a>
     </div>
-    <div class="grp"><div class="grp-lbl">Dasar Hukum &amp; Regulasi</div><div class="chips">
+  </div>
+
+  <div class="cat view no-count" id="regulasi">
+    <div class="cat-head"><h2>Regulasi</h2><span class="cat-tag">Dasar Hukum</span></div>
+    <p class="cat-desc">Dasar hukum dan regulasi terkait perencanaan &amp; pengembangan.</p>
+    <div class="chips">
       <a class="chip" href="https://drive.google.com/file/d/10ymcSa18siFPJaVevOHQq3kAGtZ_hbz3/view?usp=drive_link" target="_blank" rel="noopener noreferrer">Aturan RKAT 2026</a>
       <a class="chip" href="https://drive.google.com/file/d/1mkucdLJkV0hAFNZ-UJ4Shl2bmqE_mdHO/view?usp=drive_link" target="_blank" rel="noopener noreferrer">Panduan RAKER 2025</a>
       <a class="chip" href="https://drive.google.com/file/d/1Sh8lxAOMPDfJZ4_7wBPUKaYej5JBnCXr/view?usp=drive_link" target="_blank" rel="noopener noreferrer">Renstra Kemdiktisaintek</a>
-    </div></div>
+    </div>
   </div>
 
-  <div class="cat">
+  <div class="cat view no-count" id="formulir">
+    <div class="cat-head"><h2>Formulir Layanan PPID</h2><span class="cat-tag">Permohonan Informasi • Pengajuan Keberatan</span></div>
+    <p class="cat-desc">Isi data dengan benar. Tanda terima akan dikirim ke email Anda.</p>
+    <div id="fStatus" role="status"></div>
+    <form id="ppidForm" novalidate>
+      <fieldset class="fs"><legend>Data kontak</legend><div class="fgrid">
+        <div class="fld"><label for="f-email">Email <b>*</b></label><input id="f-email" name="email" type="email" required></div>
+        <div class="fld"><label for="f-hp">Handphone <b>*</b></label><input id="f-hp" name="hp" type="tel" required></div>
+        <div class="fld"><label for="f-nama">Nama Lengkap (tanpa gelar) <b>*</b></label><input id="f-nama" name="nama" required></div>
+        <div class="fld"><label for="f-alamat">Alamat <b>*</b></label><textarea id="f-alamat" name="alamat" required></textarea></div>
+      </div></fieldset>
+      <fieldset class="fs"><legend>Identitas pemohon</legend><div class="fgrid">
+        <div class="fld"><label for="f-nik">Nomor Identitas (KTP/SIM/Paspor) <b>*</b></label><input id="f-nik" name="nik" inputmode="numeric" required></div>
+        <div class="fld"><label for="f-file">Lampiran (KTP/SIM/Paspor) <b>*</b></label><input id="f-file" name="file" type="file" accept=".jpg,.jpeg,.png,.pdf" required><small>Format: JPG, PNG, atau PDF. Maksimal 5 MB.</small></div>
+      </div></fieldset>
+      <fieldset class="fs"><legend>Jenis layanan &amp; kategori</legend><div class="fgrid">
+        <div class="fld"><label for="f-jenis">Jenis Layanan <b>*</b></label><select id="f-jenis" name="jenis" required><option value="">— Pilih Jenis Layanan —</option><option>Permohonan Informasi</option><option>Pengajuan Keberatan</option></select></div>
+        <div class="fld"><label for="f-kat">Kategori Pemohon <b>*</b></label><select id="f-kat" name="kategori" required><option value="">— Pilih Kategori —</option><option>Perseorangan</option><option>Kelompok Orang</option><option>Badan Hukum</option></select></div>
+      </div></fieldset>
+      <fieldset class="fs"><legend>Pernyataan / pertanyaan</legend>
+        <div class="fld"><label for="f-isi">Pernyataan/Pertanyaan <b>*</b></label><textarea id="f-isi" name="isi" required></textarea></div>
+      </fieldset>
+      <div class="hp" aria-hidden="true"><label>Website <input name="website" tabindex="-1" autocomplete="off"></label></div>
+      <div class="fbtns"><button type="reset" class="btn sec">Reset</button><button type="submit" class="btn pri" id="fSend">Kirim Formulir</button></div>
+    </form>
+  </div>
+
+  <div class="cat home" id="prosedur">
     <div class="cat-head"><h2>Prosedur Permohonan</h2><span class="cat-tag">Pasal 22</span></div>
     <div class="steps">
       <div class="step"><div class="n">01</div><h3>Ajukan permohonan</h3><p>Via email/kontak resmi.</p></div>
@@ -155,7 +294,7 @@
     </div>
   </div>
 
-  <div class="cat">
+  <div class="cat view" id="dikecualikan">
     <div class="cat-head"><h2>Informasi Dikecualikan</h2><span class="cat-tag">Pasal 17</span></div>
     <div class="note">Termasuk data pribadi pegawai, dokumen internal yang masih dalam proses, dan informasi lain yang dikecualikan berdasarkan Undang-Undang Keterbukaan Informasi Publik.</div>
   </div>
@@ -199,7 +338,7 @@ function initDashboard(){
   var yearArr = Array.from(years).map(Number).sort(function(a,b){return a-b;});
   var yearSpan = yearArr.length ? (yearArr[yearArr.length-1] - yearArr[0] + 1) : 0;
 
-  var catCount = document.querySelectorAll('.cat').length;
+  var catCount = document.querySelectorAll('.cat:not(.no-count)').length;
 
   var nums = document.querySelectorAll('.stat .num');
   if(nums[0]) nums[0].textContent = totalDocs;
@@ -212,6 +351,76 @@ document.addEventListener('click', function(e){
     if(!d.contains(e.target)) d.removeAttribute('open');
   });
 });
+
+/* Menu navigasi */
+document.querySelectorAll('.nav-btn.has-sub').forEach(function(btn){
+  btn.addEventListener('click', function(e){
+    e.stopPropagation();
+    var item = btn.parentElement, willOpen = !item.classList.contains('open');
+    closeMenus();
+    if(willOpen){ item.classList.add('open'); btn.setAttribute('aria-expanded','true'); }
+  });
+});
+function closeMenus(){
+  document.querySelectorAll('.nav-item.open').forEach(function(i){
+    i.classList.remove('open');
+    var b = i.querySelector('.nav-btn'); if(b) b.setAttribute('aria-expanded','false');
+  });
+}
+document.addEventListener('click', closeMenus);
+document.addEventListener('keydown', function(e){ if(e.key==='Escape') closeMenus(); });
+function showView(id){
+  document.querySelectorAll('.view').forEach(function(v){ v.classList.toggle('on', v.id===id); });
+  document.body.classList.toggle('in-view', !!id);
+}
+function setActive(a){
+  document.querySelectorAll('.nav-btn').forEach(function(b){ b.classList.remove('active'); });
+  var it = a.closest('.nav-item'); if(it) it.querySelector('.nav-btn').classList.add('active');
+}
+document.querySelectorAll('.topnav a[href^="#"]').forEach(function(a){
+  a.addEventListener('click', function(e){
+    var h = a.getAttribute('href');
+    e.preventDefault(); closeMenus();
+    if(h === '#') return;               // tautan belum diisi
+    if(a.dataset.jenis){ document.getElementById('f-jenis').value = a.dataset.jenis; }
+    var id = h.slice(1), t = document.getElementById(id);
+    if(!t) return;
+    if(t.classList.contains('view')){ showView(id); t = document.querySelector('.topnav'); }
+    else { showView(null); }
+    setActive(a);
+    setTimeout(function(){ t.scrollIntoView({behavior:'smooth', block:'start'}); sendHeight(); }, 30);
+  });
+});
+document.querySelectorAll('.nav-btn.has-sub').forEach(function(b){ b.addEventListener('click', function(){ setTimeout(sendHeight, 30); }); });
+
+/* Formulir layanan -> Google Apps Script (lihat apps-script.gs) */
+var ENDPOINT = '';   // <-- tempel URL Web App Apps Script di sini
+(function(){
+  var f = document.getElementById('ppidForm'); if(!f) return;
+  var st = document.getElementById('fStatus'), btn = document.getElementById('fSend');
+  function msg(t, cls){ st.textContent = t; st.className = cls || ''; sendHeight(); }
+  f.addEventListener('reset', function(){ st.className=''; st.textContent=''; });
+  f.addEventListener('submit', function(e){
+    e.preventDefault();
+    if(!f.checkValidity()){ f.reportValidity(); return; }
+    if(!ENDPOINT){ msg('Formulir belum diaktifkan (alamat penerima belum diisi).','err'); return; }
+    var file = f.file.files[0];
+    if(file.size > 5*1024*1024){ msg('Ukuran lampiran maksimal 5 MB.','err'); return; }
+    btn.disabled = true; msg('Mengirim…','ok');
+    var r = new FileReader();
+    r.onload = function(){
+      var d = {};
+      ['email','hp','nama','alamat','nik','jenis','kategori','isi','website'].forEach(function(k){ d[k] = f[k].value.trim(); });
+      d.file = { name:file.name, type:file.type, data:String(r.result).split(',')[1] };
+      fetch(ENDPOINT,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(d)})
+        .then(function(){ f.reset(); msg('Terkirim. Tanda terima dikirim ke email Anda (cek juga folder spam).','ok'); })
+        .catch(function(){ msg('Gagal mengirim. Periksa koneksi lalu coba lagi.','err'); })
+        .then(function(){ btn.disabled = false; });
+    };
+    r.onerror = function(){ btn.disabled=false; msg('Lampiran tidak dapat dibaca.','err'); };
+    r.readAsDataURL(file);
+  });
+})();
 
 function sendHeight(){
   var h = document.documentElement.scrollHeight;
