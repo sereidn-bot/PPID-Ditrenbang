@@ -18,7 +18,7 @@
   body{margin:0; background:var(--bg); color:var(--ink); font-family:'Inter',sans-serif;}
   h1,h2,.mn{font-family:'Manrope',sans-serif;}
 
-  main{width:100%; margin:0 auto; padding:28px clamp(16px,4vw,48px) 50px;}
+  main{width:100%; max-width:1318px; margin:0 auto; padding:28px 16px 40px;}
   .page-title h1{font-size:clamp(20px,3vw,27px); margin:0 0 4px;}
   .page-title p{color:var(--muted); font-size:13px; margin:0 0 24px;}
 
@@ -69,7 +69,7 @@
   .note{font-size:12.5px; color:var(--muted); background:#ffffff; border-left:3px solid var(--green); border-radius:8px; padding:14px 16px; line-height:1.6;}
 
   /* ===== Menu navigasi ===== */
-  .topnav{position:relative; z-index:30; background:#fff; border-bottom:1px solid var(--line); padding:0 clamp(16px,4vw,48px);}
+  .topnav{position:relative; z-index:30; background:#fff; border-bottom:1px solid var(--line); padding:0;}
   .nav{display:flex; flex-wrap:wrap; align-items:center; gap:0 6px;}
   .nav-item{position:relative;}
   .nav-btn{background:none; border:0; font:600 13.5px 'Inter',sans-serif; color:var(--ink); padding:16px 14px; cursor:pointer; display:flex; align-items:center; gap:5px; text-decoration:none;}
@@ -112,7 +112,10 @@
   .view{display:none;}
   .view.on{display:block;}
   body.in-view .home{display:none;}
-  main{min-height:480px;}
+  main{min-height:360px;}
+  .nav{max-width:1318px; margin:0 auto; padding:0 16px;}
+  @media(min-width:701px){.nav-item:first-child .nav-btn{padding-left:0;}}
+  #formulir{max-width:900px; margin-left:auto; margin-right:auto;}
 </style>
 </head>
 <body>
@@ -181,7 +184,7 @@
 
 <main>
   <div class="page-title home" id="beranda">
-    <h1>PPID Pelaksana</h1>
+    <h1>Panel Transparansi PPID</h1>
     <p>Ditrenbang UNAND — sesuai UU No. 14/2008 tentang Keterbukaan Informasi Publik</p>
     <p style="font-size:12px;color:#9aaa9a;font-style:italic;margin-top:4px;">Diperbarui per September 2026</p>
   </div>
@@ -366,6 +369,7 @@ function closeMenus(){
     i.classList.remove('open');
     var b = i.querySelector('.nav-btn'); if(b) b.setAttribute('aria-expanded','false');
   });
+  setTimeout(sendHeight, 30);
 }
 document.addEventListener('click', closeMenus);
 document.addEventListener('keydown', function(e){ if(e.key==='Escape') closeMenus(); });
@@ -423,9 +427,12 @@ var ENDPOINT = 'https://script.google.com/macros/s/AKfycbyOVT4oYKz1CWQnuGPPXaOrd
 })();
 
 function sendHeight(){
-  var h = document.documentElement.scrollHeight;
-  window.parent.postMessage({ ppidFrameHeight: h }, '*');
+  var h = document.body.getBoundingClientRect().bottom + window.scrollY;
+  var sub = document.querySelector('.nav-item.open > .sub');
+  if(sub){ h = Math.max(h, sub.getBoundingClientRect().bottom + window.scrollY + 8); }
+  window.parent.postMessage({ ppidFrameHeight: Math.ceil(h) }, '*');
 }
+if(window.ResizeObserver){ new ResizeObserver(sendHeight).observe(document.body); }
 window.addEventListener('load', sendHeight);
 window.addEventListener('resize', sendHeight);
 setTimeout(sendHeight, 300);
