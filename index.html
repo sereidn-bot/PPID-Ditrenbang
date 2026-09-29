@@ -541,6 +541,11 @@ document.querySelectorAll('.topnav a[href^="#"]').forEach(function(a){
   });
 });
 document.querySelectorAll('.nav-btn.has-sub').forEach(function(b){ b.addEventListener('click', function(){ setTimeout(sendHeight, 30); }); });
+  window.addEventListener('message', function(e){
+  if(!e.data || !e.data.ppidGo) return;
+  var a = document.querySelector('.topnav a[href="#' + e.data.ppidGo + '"]');
+  if(a) a.click();
+});
 
 /* Formulir layanan -> Google Apps Script (lihat apps-script.gs) */
 var ENDPOINT = 'https://script.google.com/macros/s/AKfycbyOVT4oYKz1CWQnuGPPXaOrdpG7g9kKKXmUmIDByiFQr_iC_Clwbe3nDqutLYp_WIE9WA/exec';   // <-- tempel URL Web App Apps Script di sini
